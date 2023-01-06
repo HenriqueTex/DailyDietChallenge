@@ -1,8 +1,10 @@
 import { FlatList, SafeAreaView, SectionList, Text } from "react-native";
-import { Container, Header, HeaderText, IconArrowUpRight, ListTitle, PercentageBox, PercentageSubtitle, PercentageTitle } from "./styles";
+import { Container, Header, HeaderText, IconArrowUpRight, ListTitle } from "./styles";
 import { Button } from "../../components/Button";
 import { useState } from "react";
 import { MealCard } from "../../components/MealCard";
+import { useNavigation } from "@react-navigation/native";
+import { PercentageBox } from "../../components/PercentageBox";
 
 export function Meals() {
 	const [players, setPlayers] = useState(['jo', 'maria'])
@@ -26,8 +28,18 @@ export function Meals() {
 		}
 	];
 
+	const navigation = useNavigation()
+
+	function handleNewMeal() {
+		navigation.navigate('createMeal')
+	}
+
+	function handleMealsInfo() {
+		navigation.navigate('mealsInfo')
+	}
+
 	return (
-		<SafeAreaView style={{ flex: 1 }}>
+		<SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
 			<Container>
 				<Header>
 					<HeaderText>
@@ -38,21 +50,12 @@ export function Meals() {
 					</HeaderText>
 				</Header>
 
-
-				<PercentageBox>
-					<IconArrowUpRight />
-					<PercentageTitle>
-						98%
-					</PercentageTitle>
-					<PercentageSubtitle>
-						das refeições dentro da dieta
-					</PercentageSubtitle>
-				</PercentageBox>
+				<PercentageBox title="98%" onPress={handleMealsInfo} />
 
 				<ListTitle>
 					Refeições
 				</ListTitle>
-				<Button title="Adicionar Refeição" icon="add" />
+				<Button onPress={handleNewMeal} title="Adicionar Refeição" icon="add" />
 
 
 				<SectionList

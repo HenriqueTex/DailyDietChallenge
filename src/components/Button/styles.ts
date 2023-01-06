@@ -2,7 +2,11 @@ import { TouchableOpacity } from "react-native";
 import styled, { css } from "styled-components/native";
 import { MaterialIcons } from "@expo/vector-icons";
 
-export const Container = styled(TouchableOpacity)`
+type Props = {
+  type: "primary" | "secondary";
+};
+
+export const Container = styled(TouchableOpacity)<Props>`
   flex: 1;
 
   width: 100%;
@@ -15,12 +19,19 @@ export const Container = styled(TouchableOpacity)`
   margin: 6px 0px;
 
   border-radius: 8px;
-  background-color: ${({ theme }) => theme.COLORS.GRAY_2};
+  background-color: ${({ theme, type }) =>
+    type === "primary" ? theme.COLORS.GRAY_2 : theme.COLORS.WHITE};
+
+  ${({ theme, type }) =>
+    type === "secondary" &&
+    css`
+      border: 1px solid ${theme.COLORS.GRAY_2};
+    `}
 `;
 
-export const Title = styled.Text`
-  ${({ theme }) => css`
-    color: ${({ theme }) => theme.COLORS.WHITE};
+export const Title = styled.Text<Props>`
+  ${({ theme, type }) => css`
+    color: ${type === "primary" ? theme.COLORS.WHITE : theme.COLORS.GRAY_2};
     font-family: ${theme.FONT_FAMILY.REGULAR};
     font-size: ${theme.FONT_SIZE.MD}px;
   `}
@@ -34,5 +45,9 @@ export const Box = styled.View`
 
 export const Icon = styled(MaterialIcons).attrs(({ theme }) => ({
   size: 18,
-  color: theme.COLORS.WHITE,
-}))``;
+  // color: theme.COLORS.WHITE,
+}))<Props>`
+  ${({ theme, type }) => css`
+    color: ${type === "primary" ? theme.COLORS.WHITE : theme.COLORS.GRAY_1};
+  `}
+`;

@@ -18,7 +18,8 @@ export const Container = styled.TouchableOpacity<StyleProps>`
     css`
       border: 1px solid ${theme.COLORS[ColorType[color]]};
     `}
-  background-color: ${({ theme }) => theme.COLORS.GRAY_6};
+  background-color: ${({ theme, color }) =>
+    color === "green" ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};
 
   flex: 1;
   border-radius: 6px;

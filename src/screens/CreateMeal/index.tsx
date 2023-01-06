@@ -1,20 +1,16 @@
 import { SafeAreaView, Text, View } from "react-native";
-import { ContainerInputColumn, ContainerRow, FormContainer, IconArrowLeft, Title, TitleContainer } from "./styles";
+import { ContainerInputColumn, ContainerRow, FormContainer } from "./styles";
 import { useTheme } from "styled-components/native";
 import { Input } from "../../components/Input";
 import { TextArea } from "../../components/TextArea";
 import { Ratio } from "../../components/Ratio";
+import { TitleHeader } from "../../components/TitleHeader";
 
 export function CreateMeal() {
 	const { COLORS } = useTheme();
 	return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: COLORS.GRAY_5 }} >
-			<TitleContainer>
-				<IconArrowLeft />
-				<Title>
-					Nova Refeição
-				</Title>
-			</TitleContainer>
+			<TitleHeader title={"Nova Refeição"} />
 			<FormContainer>
 
 				<Input style={{ marginBottom: 12 }} title="Nome"></Input>

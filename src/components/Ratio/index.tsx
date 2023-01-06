@@ -1,6 +1,7 @@
 import { Text, TouchableOpacityProps, View } from "react-native";
 import { Container, ContainerRow, Label, StatusCircle, Title } from "./styles";
 import { useState } from "react";
+import { Button } from "../Button";
 
 export function Ratio({ ...rest }: TouchableOpacityProps) {
 
@@ -10,7 +11,7 @@ export function Ratio({ ...rest }: TouchableOpacityProps) {
 
 		<>
 			<Title>Está dentro da dieta?</Title>
-			<ContainerRow>
+			<ContainerRow style={{ flex: 1 }}>
 				<Container {...rest} isActive={selected === 0} color="green" onPress={() => setSelected(0)}>
 					<StatusCircle color="green" />
 					<View style={{ width: 5 }} />
@@ -25,6 +26,8 @@ export function Ratio({ ...rest }: TouchableOpacityProps) {
 					<Label>Não</Label>
 				</Container>
 			</ContainerRow>
+
+			<Button title={"Cadastrar Refeição"}></Button>
 		</>
 
 	)
