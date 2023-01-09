@@ -60,3 +60,9 @@ export const InfoTitle = styled.Text`
   align-self: center;
   margin: 16px;
 `;
+
+export const TouchableContainer = styled.TouchableOpacity`
+  position: absolute;
+  left: 24px;
+  top: 12px;
+`;

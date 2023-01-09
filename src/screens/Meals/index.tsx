@@ -6,6 +6,12 @@ import { MealCard } from "../../components/MealCard";
 import { useNavigation } from "@react-navigation/native";
 import { PercentageBox } from "../../components/PercentageBox";
 
+type Meal = {
+	hours: string,
+	name: string,
+	goodMeal: boolean
+}
+
 export function Meals() {
 	const [players, setPlayers] = useState(['jo', 'maria'])
 
@@ -38,6 +44,11 @@ export function Meals() {
 		navigation.navigate('mealsInfo')
 	}
 
+	function handleEditMeal(meal: Meal) {
+		console.log(meal)
+		navigation.navigate('editMeal', { meal })
+	}
+
 	return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
 			<Container>
@@ -63,7 +74,7 @@ export function Meals() {
 					style={{ marginTop: 16 }}
 					sections={DATA}
 					keyExtractor={(item, index) => item.name + index}
-					renderItem={({ item }) => <MealCard meal={item} />}
+					renderItem={({ item }) => <MealCard onPress={() => handleEditMeal(item)} meal={item} />}
 					renderSectionHeader={({ section: { title } }) => (
 						<Text>{title}</Text>
 					)}

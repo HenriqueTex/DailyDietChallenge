@@ -1,20 +1,23 @@
-import { SafeAreaView, Text, View } from "react-native";
+import { SafeAreaView, View } from "react-native";
 import { TitleHeader } from "../../components/TitleHeader";
 import { useTheme } from "styled-components/native";
 import { BodyContainer } from "../../components/BodyContainer";
 import { CircleStatus, DateDescription, DateTitle, MealDescription, MealTitle, Tag, TagText } from "./styles";
 import { Button } from "../../components/Button";
+import { useNavigation } from "@react-navigation/native";
 
 
 export function ViewMeal() {
 
-	const { COLORS } = useTheme();
+	const { COLORS } = useTheme()
+	const navigation = useNavigation()
+
 
 	return (
 
 		<>
 			<SafeAreaView style={{ flex: 1, backgroundColor: COLORS.GRAY_5 }}>
-				<TitleHeader title="Refeição" />
+				<TitleHeader onPress={() => navigation.goBack()} title="Refeição" />
 				<BodyContainer>
 					<View style={{ flex: 1 }}>
 						<MealTitle>

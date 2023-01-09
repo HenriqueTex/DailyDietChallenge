@@ -1,15 +1,26 @@
-import { SafeAreaView, Text, View } from "react-native";
-import { ContainerBackground, ContainerInfo, ContainerRow, IconArrowLeft, InfoTitle, PercentageTitle, Subtitle } from "./styles";
+import { SafeAreaView, Text, Touchable, TouchableOpacity, View } from "react-native";
+import { ContainerBackground, ContainerInfo, ContainerRow, IconArrowLeft, InfoTitle, PercentageTitle, Subtitle, TouchableContainer } from "./styles";
 import { RoundedBox } from "../../components/RoundedBox";
+import { useNavigation } from "@react-navigation/native";
 
 export function MealsInfo() {
+
+	const navigation = useNavigation()
+
+	function handleBack() {
+		navigation.goBack()
+	}
+
+
 	return (
 
 		<SafeAreaView style={{ flex: 1, backgroundColor: "#E5F0DB" }}>
 
 			<ContainerBackground >
 
-				<IconArrowLeft />
+				<TouchableContainer onPress={handleBack}>
+					<IconArrowLeft />
+				</TouchableContainer>
 
 				<PercentageTitle>
 					98,06%

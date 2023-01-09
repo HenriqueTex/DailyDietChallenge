@@ -1,18 +1,19 @@
-import { View } from "react-native";
+import { TouchableOpacityProps, View } from "react-native";
 import { Container, ContainerLeft, Hours, MealName, Separator, StatusCircle } from "./styles";
 
-type Props = {
+type Props = TouchableOpacityProps & {
 	meal: {
 		hours: string,
 		name: string,
 		goodMeal: boolean
+
 	}
 
 };
 
-export function MealCard({ meal }: Props) {
+export function MealCard({ meal, ...rest }: Props) {
 	return (
-		<Container>
+		<Container  {...rest}>
 			<ContainerLeft>
 				<Hours>
 					{meal.hours}

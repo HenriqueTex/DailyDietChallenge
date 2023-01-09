@@ -2,13 +2,14 @@ import { IconArrowLeft, Title, TitleContainer, TouchableContainer } from "./styl
 
 type Props = {
 	title: string;
+	onPress: () => void;
 }
 
-export function TitleHeader({ title }: Props) {
+export function TitleHeader({ title, onPress }: Props) {
 
 	return (
 		<TitleContainer>
-			<TouchableContainer>
+			<TouchableContainer onPress={onPress}>
 				<IconArrowLeft />
 			</TouchableContainer>
 			<Title >

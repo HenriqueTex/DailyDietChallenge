@@ -5,6 +5,7 @@ export declare global {
       createMeal: undefined;
       mealsInfo: undefined;
       viewMeal: { meal: string };
+      editMeal: { meal: { hours: string; name: string; goodMeal: boolean } };
     }
   }
 }

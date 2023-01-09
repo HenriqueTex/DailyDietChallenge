@@ -1,27 +1,43 @@
-import { SafeAreaView, Text, View } from "react-native";
-import { ContainerInputColumn, ContainerRow, FormContainer } from "./styles";
-import { useTheme } from "styled-components/native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { TitleHeader } from "../../components/TitleHeader";
+import { FormContainer } from "../CreateMeal/styles";
 import { Input } from "../../components/Input";
 import { TextArea } from "../../components/TextArea";
+import { ContainerInputColumn, ContainerRow } from "./styles";
+import { View } from "react-native";
 import { Ratio } from "../../components/Ratio";
-import { TitleHeader } from "../../components/TitleHeader";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { useTheme } from "styled-components/native";
+import { useState } from "react";
 
-export function CreateMeal() {
+
+type RouteParams = {
+	meal: {
+		hours: string,
+		name: string,
+		goodMeal: boolean
+	}
+}
+
+export function EditMeal() {
+
 	const { COLORS } = useTheme();
+
+
+	const route = useRoute();
+
+	const { meal } = route.params as RouteParams
+
 
 	const navigation = useNavigation()
 
-	function handleBack() {
-		navigation.goBack()
-	}
 
 	return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: COLORS.GRAY_5 }} >
-			<TitleHeader title={"Nova Refeição"} onPress={handleBack} />
+			<TitleHeader title={"Nova Refeição"} onPress={() => navigation.goBack()} />
 			<FormContainer>
 
-				<Input style={{ marginBottom: 12 }} title="Nome"></Input>
+				<Input value={meal.name} style={{ marginBottom: 12 }} title="Nome"></Input>
 
 				<TextArea style={{ marginBottom: 12 }} title="Descrição"></TextArea>
 
@@ -43,7 +59,7 @@ export function CreateMeal() {
 			</FormContainer>
 		</ SafeAreaView>
 
-	)
 
+	)
 
 }
