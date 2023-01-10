@@ -1,3 +1,4 @@
+import { TextInput } from "react-native";
 import styled, { css } from "styled-components/native";
 
 export type ColorStyleProps = "red" | "green";

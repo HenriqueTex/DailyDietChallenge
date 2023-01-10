@@ -1,18 +1,26 @@
-import { Text, TouchableOpacityProps, View } from "react-native";
+import { Text, TextInput, TouchableOpacityProps, View } from "react-native";
 import { Container, ContainerRow, Label, StatusCircle, Title } from "./styles";
 import { useState } from "react";
 import { Button } from "../Button";
 
-export function Ratio({ ...rest }: TouchableOpacityProps) {
+type Props = TouchableOpacityProps & {
+	value: boolean
+	onChange: (...events: any[]) => void
 
-	const [selected, setSelected] = useState(0)
+}
+
+export function Ratio({ value, onChange, ...rest }: Props) {
+
+	function handlePress(touchedButton: boolean) {
+		onChange(touchedButton)
+	}
 
 	return (
 
 		<>
 			<Title>Está dentro da dieta?</Title>
 			<ContainerRow style={{ flex: 1 }}>
-				<Container {...rest} isActive={selected === 0} color="green" onPress={() => setSelected(0)}>
+				<Container {...rest} isActive={value === true} color="green" onPress={() => handlePress(true)}>
 					<StatusCircle color="green" />
 					<View style={{ width: 5 }} />
 					<Label>Sim</Label>
@@ -20,14 +28,13 @@ export function Ratio({ ...rest }: TouchableOpacityProps) {
 
 				<View style={{ width: 20 }} />
 
-				<Container {...rest} isActive={selected === 1} color="red" onPress={() => setSelected(1)}>
+				<Container {...rest} isActive={value === false} color="red" onPress={() => handlePress(false)}>
 					<StatusCircle color="red" />
 					<View style={{ width: 5 }} />
 					<Label>Não</Label>
 				</Container>
 			</ContainerRow>
 
-			<Button title={"Cadastrar Refeição"}></Button>
 		</>
 
 	)
