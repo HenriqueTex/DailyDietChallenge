@@ -20,7 +20,8 @@ export const Title = styled.Text`
 
 export const TouchableContainer = styled.TouchableOpacity`
   position: absolute;
-  left: 24px;
+  padding: 12px;
+  left: 12px;
 `;
 
 export const IconArrowLeft = styled(ArrowLeft).attrs(({ theme }) => ({

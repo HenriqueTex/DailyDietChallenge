@@ -1,6 +1,6 @@
 
 import 'react-native-gesture-handler';
-import { StatusBar } from 'react-native';
+import { Keyboard, StatusBar, TouchableWithoutFeedback } from 'react-native';
 import { ThemeProvider } from 'styled-components/native';
 import theme from './src/theme';
 import { useFonts, NunitoSans_400Regular, NunitoSans_700Bold } from '@expo-google-fonts/nunito-sans';
@@ -19,6 +19,7 @@ export default function App() {
 			<StatusBar barStyle={"dark-content"} backgroundColor="transparent" translucent />
 			{fontsLoaded ? <Routes /> : <></>}
 		</ThemeProvider>
+
 	);
 }
 

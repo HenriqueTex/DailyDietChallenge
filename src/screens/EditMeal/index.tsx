@@ -53,7 +53,7 @@ export function EditMeal() {
 					</ContainerInputColumn>
 				</ContainerRow>
 
-				<Ratio />
+				{/* <Ratio /> */}
 
 
 			</FormContainer>

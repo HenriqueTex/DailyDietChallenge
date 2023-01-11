@@ -1,19 +1,19 @@
 import { FlatList, SafeAreaView, SectionList, Text } from "react-native";
 import { Container, Header, HeaderText, IconArrowUpRight, ListTitle } from "./styles";
 import { Button } from "../../components/Button";
-import { useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { MealCard } from "../../components/MealCard";
 import { useNavigation } from "@react-navigation/native";
 import { PercentageBox } from "../../components/PercentageBox";
+import { mealsGetAll } from "../../storage/Meal/mealGetAll";
+import { Section, mealsGetSectionFormat } from "../../storage/Meal/mealGetSectionFormat";
+import { Meal } from "../../@types/type";
 
-type Meal = {
-	hours: string,
-	name: string,
-	goodMeal: boolean
-}
+
+
+
 
 export function Meals() {
-	const [players, setPlayers] = useState(['jo', 'maria'])
 
 	const DATA = [
 		{
@@ -36,6 +36,15 @@ export function Meals() {
 
 	const navigation = useNavigation()
 
+	const [meals, setMeals] = useState<Section[]>([])
+
+	async function fetchMeals() {
+		const formattedMeals = await mealsGetSectionFormat();
+		setMeals(formattedMeals);
+
+
+	}
+
 	function handleNewMeal() {
 		navigation.navigate('createMeal')
 	}
@@ -46,8 +55,13 @@ export function Meals() {
 
 	function handleEditMeal(meal: Meal) {
 		console.log(meal)
-		navigation.navigate('editMeal', { meal })
+		// navigation.navigate('editMeal', { meal })
 	}
+
+	useEffect(useCallback(() => {
+		fetchMeals()
+
+	}, []));
 
 	return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
@@ -72,9 +86,12 @@ export function Meals() {
 				<SectionList
 
 					style={{ marginTop: 16 }}
-					sections={DATA}
+					sections={meals}
 					keyExtractor={(item, index) => item.name + index}
-					renderItem={({ item }) => <MealCard onPress={() => handleEditMeal(item)} meal={item} />}
+					renderItem={({ item }) =>
+						<MealCard onPress={() => handleEditMeal(item)} meal={item} />
+						// <Text>test</Text>
+					}
 					renderSectionHeader={({ section: { title } }) => (
 						<Text>{title}</Text>
 					)}

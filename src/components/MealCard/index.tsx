@@ -1,13 +1,9 @@
 import { TouchableOpacityProps, View } from "react-native";
 import { Container, ContainerLeft, Hours, MealName, Separator, StatusCircle } from "./styles";
+import { Meal } from "../../storage/Meal/mealGetSectionFormat";
 
 type Props = TouchableOpacityProps & {
-	meal: {
-		hours: string,
-		name: string,
-		goodMeal: boolean
-
-	}
+	meal: Meal
 
 };
 
@@ -16,7 +12,7 @@ export function MealCard({ meal, ...rest }: Props) {
 		<Container  {...rest}>
 			<ContainerLeft>
 				<Hours>
-					{meal.hours}
+					{meal.hour}
 				</Hours>
 				<Separator />
 				<MealName>
