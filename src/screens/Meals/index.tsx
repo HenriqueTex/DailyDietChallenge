@@ -1,47 +1,28 @@
-import { FlatList, SafeAreaView, SectionList, Text } from "react-native";
-import { Container, Header, HeaderText, IconArrowUpRight, ListTitle } from "./styles";
+import { SafeAreaView, SectionList, Text } from "react-native";
+import { Container, Header, HeaderText, ListTitle } from "./styles";
 import { Button } from "../../components/Button";
 import { useEffect, useState, useCallback } from "react";
 import { MealCard } from "../../components/MealCard";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { PercentageBox } from "../../components/PercentageBox";
-import { mealsGetAll } from "../../storage/Meal/mealGetAll";
 import { Section, mealsGetSectionFormat } from "../../storage/Meal/mealGetSectionFormat";
-import { Meal } from "../../@types/type";
-
-
-
-
+import { DietPercent, Meal } from "../../@types/type";
+import { mealsGetInDietPercent } from "../../storage/Meal/mealGetInDietPercent";
 
 export function Meals() {
-
-	const DATA = [
-		{
-			title: "Main dishes",
-			data: [{ hours: "16:40", name: "test", goodMeal: true }, { hours: "18:40", name: "comida", goodMeal: false }, { hours: "22:40", name: "batata", goodMeal: true }]
-		},
-		{
-			title: "Sides",
-			data: [{ hours: "16:40", name: "test", goodMeal: false }, { hours: "18:40", name: "comida", goodMeal: false }, { hours: "22:40", name: "batata", goodMeal: true }]
-		},
-		{
-			title: "Drinks",
-			data: [{ hours: "16:40", name: "test", goodMeal: true }, { hours: "18:40", name: "comida", goodMeal: true }, { hours: "22:40", name: "batata", goodMeal: true }]
-		},
-		{
-			title: "Desserts",
-			data: [{ hours: "16:40", name: "test", goodMeal: true }, { hours: "18:40", name: "comida", goodMeal: true }, { hours: "22:40", name: "batata", goodMeal: true }]
-		}
-	];
 
 	const navigation = useNavigation()
 
 	const [meals, setMeals] = useState<Section[]>([])
 
-	async function fetchMeals() {
-		const formattedMeals = await mealsGetSectionFormat();
-		setMeals(formattedMeals);
+	const [dietPercent, setDietPercent] = useState<DietPercent>({ percent: 0, type: 'success' })
 
+	async function fetchMeals() {
+
+		const formattedMeals = await mealsGetSectionFormat()
+		setMeals(formattedMeals)
+		const inDietPercent = await mealsGetInDietPercent()
+		setDietPercent(inDietPercent)
 
 	}
 
@@ -53,12 +34,12 @@ export function Meals() {
 		navigation.navigate('mealsInfo')
 	}
 
-	function handleEditMeal(meal: Meal) {
+	function handleViewMeal(meal: Meal) {
 		console.log(meal)
-		// navigation.navigate('editMeal', { meal })
+		navigation.navigate('viewMeal', { meal })
 	}
 
-	useEffect(useCallback(() => {
+	useFocusEffect(useCallback(() => {
 		fetchMeals()
 
 	}, []));
@@ -75,7 +56,7 @@ export function Meals() {
 					</HeaderText>
 				</Header>
 
-				<PercentageBox title="98%" onPress={handleMealsInfo} />
+				<PercentageBox percent={dietPercent?.percent} type={dietPercent.type} onPress={handleMealsInfo} />
 
 				<ListTitle>
 					Refeições
@@ -89,7 +70,7 @@ export function Meals() {
 					sections={meals}
 					keyExtractor={(item, index) => item.name + index}
 					renderItem={({ item }) =>
-						<MealCard onPress={() => handleEditMeal(item)} meal={item} />
+						<MealCard onPress={() => handleViewMeal(item)} meal={item} />
 						// <Text>test</Text>
 					}
 					renderSectionHeader={({ section: { title } }) => (

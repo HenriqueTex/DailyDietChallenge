@@ -1,20 +1,20 @@
 import { TouchableOpacityProps } from "react-native";
-import { IconArrowUpRight } from "../../screens/Meals/styles";
-import { Container, PercentageSubtitle, PercentageTitle } from "./styles";
+import { Container, IconArrowUpRight, PercentageSubtitle, PercentageTitle } from "./styles";
 
 type Props = TouchableOpacityProps & {
-	title: string;
+	percent?: number;
+	type: 'success' | 'failure'
 }
-export function PercentageBox({ title = "test", ...rest }: Props) {
+export function PercentageBox({ percent = 0, type, ...rest }: Props) {
 	return (
-		<Container {...rest}>
-			<IconArrowUpRight />
+		<Container type={type} {...rest}>
+			<IconArrowUpRight type={type} />
 			<PercentageTitle>
-				{title}
+				{percent.toFixed(2)}%
 			</PercentageTitle>
 			<PercentageSubtitle>
 				das refeições dentro da dieta
 			</PercentageSubtitle>
-		</Container>
+		</Container >
 	)
 }

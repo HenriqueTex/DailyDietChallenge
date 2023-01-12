@@ -9,8 +9,6 @@ export async function mealCreate(newMeal: Meal) {
 
     const storage = JSON.stringify([...storedMeals, newMeal]);
     await AsyncStorage.setItem(MEAL_COLLECTION, storage);
-
-    console.log(await mealsGetAll());
   } catch (error) {
     throw error;
   }

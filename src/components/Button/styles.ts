@@ -45,7 +45,6 @@ export const Box = styled.View`
 
 export const Icon = styled(MaterialIcons).attrs(({ theme }) => ({
   size: 18,
-  // color: theme.COLORS.WHITE,
 }))<Props>`
   ${({ theme, type }) => css`
     color: ${type === "primary" ? theme.COLORS.WHITE : theme.COLORS.GRAY_1};

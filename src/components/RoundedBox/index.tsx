@@ -4,7 +4,7 @@ import { RoundedBoxTitle } from "../RoundedBoxTitle";
 import { RoundedBoxSubtitle } from "../RoundedBoxSubtitle";
 
 type Props = TouchableOpacityProps & {
-	title: string;
+	title: number;
 	titleSize?: number;
 	type?: TypeStyleProps;
 	subtitle: string;

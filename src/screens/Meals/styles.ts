@@ -33,12 +33,3 @@ export const ListTitle = styled.Text`
   `}
   margin: 6px 0px;
 `;
-
-export const IconArrowUpRight = styled(ArrowUpRight).attrs(({ theme }) => ({
-  size: 24,
-  color: theme.COLORS.GREEN_DARK,
-}))`
-  position: absolute;
-  right: 6px;
-  top: 6px;
-`;

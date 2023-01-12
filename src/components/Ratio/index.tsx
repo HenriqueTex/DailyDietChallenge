@@ -1,7 +1,6 @@
-import { Text, TextInput, TouchableOpacityProps, View } from "react-native";
+import { TouchableOpacityProps, View } from "react-native";
 import { Container, ContainerRow, Label, StatusCircle, Title } from "./styles";
-import { useState } from "react";
-import { Button } from "../Button";
+
 
 type Props = TouchableOpacityProps & {
 	value: boolean
@@ -9,7 +8,7 @@ type Props = TouchableOpacityProps & {
 
 }
 
-export function Ratio({ value, onChange, ...rest }: Props) {
+export function Ratio({ value = true, onChange, ...rest }: Props) {
 
 	function handlePress(touchedButton: boolean) {
 		onChange(touchedButton)

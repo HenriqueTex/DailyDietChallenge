@@ -9,25 +9,22 @@ import { Ratio } from "../../components/Ratio";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { useTheme } from "styled-components/native";
 import { useState } from "react";
+import { Meal } from "../../@types/type";
+import { DateInput } from "../../components/DateInput";
+import { HourInput } from "../../components/HourInput";
 
 
 type RouteParams = {
-	meal: {
-		hours: string,
-		name: string,
-		goodMeal: boolean
-	}
+	meal: Meal
 }
 
 export function EditMeal() {
 
 	const { COLORS } = useTheme();
 
-
 	const route = useRoute();
 
 	const { meal } = route.params as RouteParams
-
 
 	const navigation = useNavigation()
 
@@ -39,17 +36,17 @@ export function EditMeal() {
 
 				<Input value={meal.name} style={{ marginBottom: 12 }} title="Nome"></Input>
 
-				<TextArea style={{ marginBottom: 12 }} title="Descrição"></TextArea>
+				<TextArea value={meal.description} style={{ marginBottom: 12 }} title="Descrição"></TextArea>
 
 				<ContainerRow>
 					<ContainerInputColumn style={{ marginBottom: 12 }}>
-						<Input style={{ marginBottom: 12 }} title="Data"></Input>
+						<DateInput value={meal.date} style={{ marginBottom: 12 }} title="Data"></DateInput>
 					</ContainerInputColumn>
 
 					<View style={{ width: 20 }} />
 
 					<ContainerInputColumn style={{ marginBottom: 12 }}>
-						<Input title="Hora"></Input>
+						<HourInput value={meal.hour} title="Hora"></HourInput>
 					</ContainerInputColumn>
 				</ContainerRow>
 

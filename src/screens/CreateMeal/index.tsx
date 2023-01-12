@@ -14,7 +14,7 @@ import MaskInput, { Masks } from "react-native-mask-input";
 import { DateInput } from "../../components/DateInput";
 import { HourInput } from "../../components/HourInput";
 import { Meal } from "../../@types/type";
-
+import uuid from 'react-native-uuid';
 
 
 export function CreateMeal() {
@@ -29,8 +29,9 @@ export function CreateMeal() {
 	}
 
 	function onSubmit(data: Meal) {
+		data.id = uuid.v4()
 		mealCreate(data)
-		navigation.navigate('meals')
+		navigation.goBack()
 	}
 
 
@@ -53,7 +54,7 @@ export function CreateMeal() {
 						name="description"
 						control={control}
 						render={({ field: { onChange, value } }) => (
-							<TextArea style={{ marginBottom: 12 }} value={value} onChange={onChange} title="Descrição"></TextArea>
+							<TextArea style={{ marginBottom: 12 }} value={value} onChangeText={onChange} title="Descrição"></TextArea>
 						)}
 					/>
 

@@ -4,13 +4,29 @@ import { useTheme } from "styled-components/native";
 import { BodyContainer } from "../../components/BodyContainer";
 import { CircleStatus, DateDescription, DateTitle, MealDescription, MealTitle, Tag, TagText } from "./styles";
 import { Button } from "../../components/Button";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { Meal } from "../../@types/type";
+import { mealRemove } from "../../storage/Meal/mealRemove";
 
+type RouteParams = {
+	meal: Meal
+}
 
 export function ViewMeal() {
 
 	const { COLORS } = useTheme()
+
 	const navigation = useNavigation()
+
+	const route = useRoute();
+
+	const { meal } = route.params as RouteParams
+
+
+	function handleDelete(meal: Meal) {
+		mealRemove(meal.id)
+		navigation.goBack()
+	}
 
 
 	return (
@@ -21,16 +37,16 @@ export function ViewMeal() {
 				<BodyContainer>
 					<View style={{ flex: 1 }}>
 						<MealTitle>
-							Sanduíche
+							{meal.name}
 						</MealTitle>
 						<MealDescription>
-							Sanduíche de pão integral com atum e salada de alface e tomate
+							{meal.description}
 						</MealDescription>
 						<DateTitle>
 							Data e hora
 						</DateTitle>
 						<DateDescription>
-							12/08/2022 às 12:00
+							{meal.date} às {meal.hour}
 						</DateDescription>
 
 						<Tag>
@@ -41,8 +57,8 @@ export function ViewMeal() {
 							</TagText>
 						</Tag>
 					</View>
-					<Button icon="edit" title="Editar Refeição" />
-					<Button icon="delete" type={"secondary"} title="Excluir Refeição" />
+					<Button icon="edit" onPress={() => navigation.navigate('editMeal', { meal })} title="Editar Refeição" />
+					<Button icon="delete" onPress={() => handleDelete(meal)} type={"secondary"} title="Excluir Refeição" />
 				</BodyContainer>
 			</SafeAreaView>
 		</>

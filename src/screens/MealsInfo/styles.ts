@@ -1,14 +1,19 @@
 import { ArrowLeft } from "phosphor-react-native";
 import styled, { css } from "styled-components/native";
 
-export const ContainerBackground = styled.View`
+type Props = {
+  type: "success" | "failure";
+};
+
+export const ContainerBackground = styled.View<Props>`
   width: 100%;
   padding: 36px 0px
 
   justify-content: center;
   align-items: center;
 
-  background-color: ${({ theme }) => theme.COLORS.GREEN_LIGHT};
+  background-color: ${({ theme, type }) =>
+    type === "success" ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};
 `;
 
 export const ContainerInfo = styled.View`

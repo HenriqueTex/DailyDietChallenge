@@ -1,7 +1,7 @@
 import { Title } from "./styles";
 
 type Props = {
-	title: string;
+	title: number;
 	size?: number;
 }
 

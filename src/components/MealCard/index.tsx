@@ -1,6 +1,6 @@
 import { TouchableOpacityProps, View } from "react-native";
 import { Container, ContainerLeft, Hours, MealName, Separator, StatusCircle } from "./styles";
-import { Meal } from "../../storage/Meal/mealGetSectionFormat";
+import { Meal } from "../../@types/type";
 
 type Props = TouchableOpacityProps & {
 	meal: Meal
