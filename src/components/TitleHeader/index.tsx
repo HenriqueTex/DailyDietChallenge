@@ -3,12 +3,13 @@ import { IconArrowLeft, Title, TitleContainer, TouchableContainer } from "./styl
 type Props = {
 	title: string;
 	onPress: () => void;
+	goodMeal: boolean;
 }
 
-export function TitleHeader({ title, onPress }: Props) {
+export function TitleHeader({ title, onPress, goodMeal }: Props) {
 
 	return (
-		<TitleContainer>
+		<TitleContainer goodMeal={goodMeal}>
 			<TouchableContainer onPress={onPress}>
 				<IconArrowLeft />
 			</TouchableContainer>

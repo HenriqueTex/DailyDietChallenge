@@ -9,12 +9,11 @@ import { useNavigation, useFocusEffect } from "@react-navigation/native";
 import { Controller, useForm } from "react-hook-form";
 import { Button } from "../../components/Button";
 import { mealCreate } from "../../storage/Meal/mealCreate";
-import { mealsGetAll } from "../../storage/Meal/mealGetAll";
-import MaskInput, { Masks } from "react-native-mask-input";
 import { DateInput } from "../../components/DateInput";
 import { HourInput } from "../../components/HourInput";
 import { Meal } from "../../@types/type";
 import uuid from 'react-native-uuid';
+import moment from "moment";
 
 
 export function CreateMeal() {
@@ -22,7 +21,16 @@ export function CreateMeal() {
 
 	const navigation = useNavigation()
 
-	const { control, handleSubmit } = useForm<Meal>();
+
+	const { control, handleSubmit } = useForm<Meal>({
+		defaultValues: {
+			date: moment().format('DDMMYYYY'),
+			hour: moment().format('HHmm'),
+			goodMeal: true
+
+		}
+
+	});
 
 	function handleBack() {
 		navigation.goBack()
@@ -39,7 +47,7 @@ export function CreateMeal() {
 		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 
 			<SafeAreaView style={{ flex: 1, backgroundColor: COLORS.GRAY_5 }} >
-				<TitleHeader title={"Nova Refeição"} onPress={handleBack} />
+				<TitleHeader goodMeal={true} title={"Nova Refeição"} onPress={handleBack} />
 				<FormContainer>
 
 					<Controller
