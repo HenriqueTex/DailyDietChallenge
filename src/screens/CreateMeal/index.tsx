@@ -27,18 +27,16 @@ export function CreateMeal() {
 			date: moment().format('DD/MM/YYYY'),
 			hour: moment().format('HH:mm'),
 			goodMeal: true
-
 		}
-
 	});
 
 	function handleBack() {
 		navigation.goBack()
 	}
 
-	function onSubmit(data: Meal) {
+	async function onSubmit(data: Meal) {
 		data.id = uuid.v4()
-		mealCreate(data)
+		await mealCreate(data)
 		navigation.goBack()
 	}
 
