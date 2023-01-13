@@ -2,8 +2,16 @@ import { ArrowLeft } from "phosphor-react-native";
 import styled, { css } from "styled-components/native";
 
 type Props = {
-  goodMeal: boolean;
+  color: TypeStyleProps;
 };
+
+export type TypeStyleProps = "success" | "failure" | "neutral";
+
+enum ContainerType {
+  success = "GREEN_LIGHT",
+  failure = "RED_LIGHT",
+  neutral = "GRAY_5",
+}
 
 export const TitleContainer = styled.View<Props>`
   flex-direction: row;
@@ -11,8 +19,7 @@ export const TitleContainer = styled.View<Props>`
   position: relative;
   justify-content: center;
   align-items: center;
-  background-color: ${({ theme, goodMeal }) =>
-    goodMeal === true ? theme.COLORS.GREEN_LIGHT : theme.COLORS.RED_LIGHT};
+  background-color: ${({ theme, color }) => theme.COLORS[ContainerType[color]]};
 `;
 
 export const Title = styled.Text`

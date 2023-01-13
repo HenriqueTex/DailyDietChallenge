@@ -43,7 +43,6 @@ export function EditMeal() {
 	});
 
 
-	console.log(meal)
 
 	const navigation = useNavigation()
 
@@ -63,7 +62,7 @@ export function EditMeal() {
 		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 
 			<SafeAreaViewColor isPrimary={meal.goodMeal}>
-				<TitleHeader goodMeal={meal.goodMeal} title={"Editar Refeição"} onPress={handleBack} />
+				<TitleHeader type={meal.goodMeal ? 'success' : 'failure'} title={"Editar Refeição"} onPress={handleBack} />
 				<FormContainer>
 
 					<Controller

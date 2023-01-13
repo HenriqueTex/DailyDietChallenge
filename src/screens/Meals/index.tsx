@@ -35,7 +35,6 @@ export function Meals() {
 	}
 
 	function handleViewMeal(meal: Meal) {
-		console.log(meal)
 		navigation.navigate('viewMeal', { meal })
 	}
 

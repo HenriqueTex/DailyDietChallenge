@@ -24,8 +24,8 @@ export function CreateMeal() {
 
 	const { control, handleSubmit } = useForm<Meal>({
 		defaultValues: {
-			date: moment().format('DDMMYYYY'),
-			hour: moment().format('HHmm'),
+			date: moment().format('DD/MM/YYYY'),
+			hour: moment().format('HH:mm'),
 			goodMeal: true
 
 		}
@@ -47,7 +47,7 @@ export function CreateMeal() {
 		<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 
 			<SafeAreaView style={{ flex: 1, backgroundColor: COLORS.GRAY_5 }} >
-				<TitleHeader goodMeal={true} title={"Nova Refeição"} onPress={handleBack} />
+				<TitleHeader title={"Nova Refeição"} onPress={handleBack} />
 				<FormContainer>
 
 					<Controller

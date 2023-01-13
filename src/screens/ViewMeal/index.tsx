@@ -7,6 +7,8 @@ import { Button } from "../../components/Button";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import { Meal } from "../../@types/type";
 import { mealRemove } from "../../storage/Meal/mealRemove";
+import { SafeAreaViewColor } from "../../components/SafeAreaViewColor";
+import { CodesandboxLogo } from "phosphor-react-native";
 
 type RouteParams = {
 	meal: Meal
@@ -14,14 +16,12 @@ type RouteParams = {
 
 export function ViewMeal() {
 
-	const { COLORS } = useTheme()
 
 	const navigation = useNavigation()
 
 	const route = useRoute();
 
 	const { meal } = route.params as RouteParams
-
 
 	function handleDelete(meal: Meal) {
 		mealRemove(meal.id)
@@ -32,8 +32,8 @@ export function ViewMeal() {
 	return (
 
 		<>
-			<SafeAreaView style={{ flex: 1, backgroundColor: COLORS.GRAY_5 }}>
-				<TitleHeader onPress={() => navigation.goBack()} title="Refeição" />
+			<SafeAreaViewColor isPrimary={meal.goodMeal}>
+				<TitleHeader type={meal.goodMeal ? 'success' : 'failure'} onPress={() => navigation.goBack()} title="Refeição" />
 				<BodyContainer>
 					<View style={{ flex: 1 }}>
 						<MealTitle>
@@ -60,7 +60,7 @@ export function ViewMeal() {
 					<Button icon="edit" onPress={() => navigation.navigate('editMeal', { meal })} title="Editar Refeição" />
 					<Button icon="delete" onPress={() => handleDelete(meal)} type={"secondary"} title="Excluir Refeição" />
 				</BodyContainer>
-			</SafeAreaView>
+			</SafeAreaViewColor>
 		</>
 	);
 }

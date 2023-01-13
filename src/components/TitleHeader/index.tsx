@@ -1,15 +1,15 @@
-import { IconArrowLeft, Title, TitleContainer, TouchableContainer } from "./styles";
+import { IconArrowLeft, Title, TitleContainer, TouchableContainer, TypeStyleProps } from "./styles";
 
 type Props = {
 	title: string;
 	onPress: () => void;
-	goodMeal: boolean;
+	type?: TypeStyleProps;
 }
 
-export function TitleHeader({ title, onPress, goodMeal }: Props) {
+export function TitleHeader({ title, onPress, type = 'neutral' }: Props) {
 
 	return (
-		<TitleContainer goodMeal={goodMeal}>
+		<TitleContainer color={type}>
 			<TouchableContainer onPress={onPress}>
 				<IconArrowLeft />
 			</TouchableContainer>
