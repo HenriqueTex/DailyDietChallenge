@@ -1,13 +1,14 @@
 import { SafeAreaView, SectionList, Text } from "react-native";
-import { Container, Header, HeaderText, ListTitle } from "./styles";
+import { Container, Header, HeaderLogo, HeaderUserBox, ListTitle } from "./styles";
 import { Button } from "../../components/Button";
-import { useEffect, useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { MealCard } from "../../components/MealCard";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { PercentageBox } from "../../components/PercentageBox";
 import { Section, mealsGetSectionFormat } from "../../storage/Meal/mealGetSectionFormat";
 import { DietPercent, Meal } from "../../@types/type";
 import { mealsGetInDietPercent } from "../../storage/Meal/mealGetInDietPercent";
+import logoImg from "../../assets/Logo.png"
 
 export function Meals() {
 
@@ -47,12 +48,9 @@ export function Meals() {
 		<SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
 			<Container>
 				<Header>
-					<HeaderText>
-						ICONPLACER
-					</HeaderText>
-					<HeaderText>
-						PHOTOPLACER
-					</HeaderText>
+					<HeaderLogo source={logoImg} />
+
+					<HeaderUserBox />
 				</Header>
 
 				<PercentageBox percent={dietPercent?.percent} type={dietPercent.type} onPress={handleMealsInfo} />

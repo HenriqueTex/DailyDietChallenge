@@ -1,7 +1,5 @@
 import styled, { css } from "styled-components/native";
 
-import { ArrowUpRight } from "phosphor-react-native";
-
 export const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.COLORS.WHITE};
@@ -17,17 +15,22 @@ export const Header = styled.View`
   justify-content: space-between;
 `;
 
-export const HeaderText = styled.Text`
+export const HeaderLogo = styled.Image``;
+
+export const HeaderUserBox = styled.View`
+  height: 36px;
+  width: 36px;
+
   ${({ theme }) => css`
-    color: ${({ theme }) => theme.COLORS.GREEN_DARK};
-    font-family: ${theme.FONT_FAMILY.BOLD};
-    font-size: ${theme.FONT_SIZE.SM}px;
+    background-color: ${theme.COLORS.GRAY_3};
   `}
+
+  border-radius: 100%;
 `;
 
 export const ListTitle = styled.Text`
   ${({ theme }) => css`
-    color: ${({ theme }) => theme.COLORS.GRAY_1};
+    color: ${theme.COLORS.GRAY_1};
     font-family: ${theme.FONT_FAMILY.REGULAR};
     font-size: ${theme.FONT_SIZE.LG}px;
   `}
